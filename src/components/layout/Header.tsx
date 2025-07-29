@@ -10,6 +10,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import logo from '@/assets/logo.png';
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,9 +40,9 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3">
-            <img src="/logo.png" alt="RossoVerde" className="h-10 w-10" />
-            <span className="font-bold text-xl gradient-text">RossoVerde</span>
+          <Link to="/" className="flex items-center space-x-3 hover-lift">
+            <img src={logo} alt="RossoVerde" className="h-12 w-12 object-contain" />
+            <span className="font-bold text-2xl gradient-text">RossoVerde</span>
           </Link>
 
           {/* Desktop Navigation */}
