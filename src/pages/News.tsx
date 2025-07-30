@@ -90,7 +90,7 @@ const News: React.FC = () => {
       <div className="container mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-6">
-          <h1 className={`text-4xl md:text-6xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h1 className={`text-4xl md:text-6xl font-bold text-morocco-green ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'الأخبار والإعلانات' : language === 'fr' ? 'Actualités et Annonces' : 'News & Announcements'}
           </h1>
           <p className={`text-xl text-muted-foreground max-w-3xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -137,7 +137,7 @@ const News: React.FC = () => {
                     {featuredArticle.category}
                   </Badge>
                   
-                  <h2 className={`text-3xl font-bold line-clamp-3 ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  <h2 className={`text-3xl font-bold line-clamp-3 text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {featuredArticle.title}
                   </h2>
                   
@@ -250,7 +250,7 @@ const News: React.FC = () => {
 
         {/* Newsletter Subscription */}
         <div className="mt-20 text-center bg-gradient-to-r from-primary-red/10 to-primary-green/10 rounded-lg p-12">
-          <h2 className={`text-3xl font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+                      <h2 className={`text-3xl font-bold mb-4 text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'لا تفوت أي خبر' : language === 'fr' ? 'Ne manquez aucune actualité' : 'Don\'t Miss Any News'}
           </h2>
           <p className={`text-muted-foreground mb-6 max-w-2xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -267,7 +267,7 @@ const News: React.FC = () => {
               placeholder={language === 'ar' ? 'بريدك الإلكتروني' : language === 'fr' ? 'Votre email' : 'Your email'}
               className="flex-1 px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <button className="btn-morocco px-6 py-2 rounded-lg hover-lift">
+            <button className={`btn-morocco px-6 py-2 rounded-lg hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'اشترك' : language === 'fr' ? 'S\'abonner' : 'Subscribe'}
             </button>
           </div>

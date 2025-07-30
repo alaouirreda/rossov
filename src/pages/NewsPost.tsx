@@ -160,11 +160,11 @@ const NewsPost: React.FC = () => {
 
             {/* Action Buttons */}
             <div className="flex items-center space-x-4 pt-4">
-              <Button variant="outline" size="sm" className="hover-lift">
+              <Button variant="outline" size="sm" className={`hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}>
                 <Share2 className="h-4 w-4 mr-2" />
                 {language === 'ar' ? 'شارك' : language === 'fr' ? 'Partager' : 'Share'}
               </Button>
-              <Button variant="outline" size="sm" className="hover-lift">
+              <Button variant="outline" size="sm" className={`hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}>
                 <Bookmark className="h-4 w-4 mr-2" />
                 {language === 'ar' ? 'احفظ' : language === 'fr' ? 'Sauvegarder' : 'Save'}
               </Button>
@@ -183,7 +183,7 @@ const NewsPost: React.FC = () => {
 
           {/* Related Articles */}
           <section>
-            <h2 className={`text-2xl font-bold mb-6 ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-2xl font-bold mb-6 text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'مقالات ذات صلة' : language === 'fr' ? 'Articles connexes' : 'Related Articles'}
             </h2>
             
@@ -234,7 +234,7 @@ const NewsPost: React.FC = () => {
                 placeholder={language === 'ar' ? 'بريدك الإلكتروني' : language === 'fr' ? 'Votre email' : 'Your email'}
                 className="flex-1 px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
               />
-              <Button className="btn-morocco">
+              <Button className={`btn-morocco ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'اشترك' : language === 'fr' ? 'S\'abonner' : 'Subscribe'}
               </Button>
             </div>

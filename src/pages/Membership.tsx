@@ -47,7 +47,7 @@ const Membership: React.FC = () => {
       <div className="container mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-6">
-          <h1 className={`text-4xl md:text-6xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h1 className={`text-4xl md:text-6xl font-bold text-morocco-green ${language === 'ar' ? 'font-arabic' : ''}`}>
             {t('membership.title')}
           </h1>
           <p className={`text-xl text-muted-foreground max-w-3xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -107,7 +107,7 @@ const Membership: React.FC = () => {
                   </ul>
 
                   <Button 
-                    className={`w-full ${plan.popular ? 'btn-morocco' : ''} hover-lift`}
+                    className={`w-full ${plan.popular ? 'btn-morocco' : ''} hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}
                     variant={plan.popular ? 'default' : 'outline'}
                     onClick={() => handleSubscribe(plan.name, plan.price)}
                   >
@@ -121,7 +121,7 @@ const Membership: React.FC = () => {
 
         {/* Benefits Section */}
         <div className="mt-20 text-center space-y-8">
-          <h2 className={`text-3xl font-bold ${language === 'ar' ? 'font-arabic' : ''}`}>
+                      <h2 className={`text-3xl font-bold text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'لماذا تنضم إلينا؟' : language === 'fr' ? 'Pourquoi nous rejoindre?' : 'Why Join Us?'}
           </h2>
           
@@ -156,7 +156,7 @@ const Membership: React.FC = () => {
 
         {/* FAQ Section */}
         <div className="mt-20">
-          <h2 className={`text-3xl font-bold text-center mb-8 ${language === 'ar' ? 'font-arabic' : ''}`}>
+                      <h2 className={`text-3xl font-bold text-center mb-8 text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'أسئلة شائعة' : language === 'fr' ? 'Questions Fréquentes' : 'Frequently Asked Questions'}
           </h2>
           

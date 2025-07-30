@@ -36,43 +36,48 @@ const Header: React.FC = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 glass-effect border-b border-border/50">
+    <header className={`sticky top-0 z-50 ${language === 'ar' ? 'glass-effect' : 'navbar-solid'} border-b border-border/50`}>
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 hover-lift">
-            <img src={logo} alt="RossoVerde" className="h-12 w-12 object-contain" />
-            <span className="font-bold text-2xl gradient-text">RossoVerde</span>
+          <Link to="/" className={`flex items-center gap-4 hover-lift transition-transform duration-200${language === 'ar' ? '' : ' font-gloock'}`} {...(language === 'ar' ? {dir: 'rtl'} : {})}>
+            <img src={logo} alt="RossoVerde" className="h-14 w-14 object-contain" />
+            <span className={`font-bold text-3xl text-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {language === 'ar' ? 'روسو فيردي' : 'RossoVerde'}
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className={`hidden lg:flex items-center gap-12${language === 'ar' ? '' : ' font-merriweather'}`} {...(language === 'ar' ? {dir: 'rtl'} : {})}>
             {navigation.map((item) => (
               <Link
                 key={item.href}
                 to={item.href}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
+                className={`relative text-base font-medium transition-all duration-200 hover:text-primary ${
                   isActive(item.href)
                     ? 'text-primary'
                     : 'text-muted-foreground'
-                }`}
+                } ${language === 'ar' ? 'font-arabic' : ''}`}
               >
                 {item.name}
+                {isActive(item.href) && (
+                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-gradient-to-r from-morocco-red to-morocco-green rounded-full" />
+                )}
               </Link>
             ))}
           </nav>
 
           {/* Right Side Actions */}
-          <div className="hidden md:flex items-center space-x-4">
+          <div className="hidden lg:flex items-center space-x-6">
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm">
+                <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
                   <Globe className="h-4 w-4 mr-2" />
                   {language.toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent align="end">
                 <DropdownMenuItem onClick={() => setLanguage('en')}>
                   English
                 </DropdownMenuItem>
@@ -87,12 +92,21 @@ const Header: React.FC = () => {
 
             {/* Auth Actions */}
             {user ? (
-              <Button onClick={signOut} variant="outline" size="sm">
+              <Button
+                onClick={signOut}
+                variant="outline"
+                size="sm"
+                className={`border-morocco-red/30 hover:bg-morocco-red/10 hover:border-morocco-red/50 ${language === 'ar' ? 'font-arabic' : ''}`}
+              >
                 {t('nav.logout')}
               </Button>
             ) : (
               <Link to="/auth">
-                <Button variant="default" size="sm" className="btn-morocco">
+                <Button
+                  variant="default"
+                  size="sm"
+                  className={`bg-morocco-red hover:bg-morocco-red/90 text-white border-0 ${language === 'ar' ? 'font-arabic' : ''}`}
+                >
                   {t('nav.login')}
                 </Button>
               </Link>
@@ -101,7 +115,7 @@ const Header: React.FC = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden"
+            className="lg:hidden p-2 rounded-lg hover:bg-muted/50 transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -110,33 +124,36 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/50">
-            <nav className="flex flex-col space-y-4">
+          <div className="lg:hidden py-6 border-t border-border/50">
+            <nav className="flex flex-col space-y-6">
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   to={item.href}
-                  className={`text-sm font-medium transition-colors hover:text-primary ${
+                  className={`relative text-lg font-medium transition-all duration-200 hover:text-primary ${
                     isActive(item.href)
                       ? 'text-primary'
                       : 'text-muted-foreground'
-                  }`}
+                  } ${language === 'ar' ? 'font-arabic' : ''}`}
                   onClick={() => setIsMenuOpen(false)}
                 >
                   {item.name}
+                  {isActive(item.href) && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-morocco-red to-morocco-green rounded-full" />
+                  )}
                 </Link>
               ))}
-              
-              <div className="pt-4 border-t border-border/50">
+
+              <div className="pt-6 border-t border-border/50">
                 <div className="flex items-center justify-between">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" size="sm">
+                      <Button variant="ghost" size="sm" className="text-muted-foreground hover:text-foreground">
                         <Globe className="h-4 w-4 mr-2" />
                         {language.toUpperCase()}
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent>
+                    <DropdownMenuContent align="end">
                       <DropdownMenuItem onClick={() => setLanguage('en')}>
                         English
                       </DropdownMenuItem>
@@ -148,18 +165,26 @@ const Header: React.FC = () => {
                       </DropdownMenuItem>
                     </DropdownMenuContent>
                   </DropdownMenu>
-
                   {user ? (
-                    <Button onClick={signOut} variant="outline" size="sm">
-                      {t('nav.logout')}
-                    </Button>
-                  ) : (
-                    <Link to="/auth">
-                      <Button variant="default" size="sm" className="btn-morocco">
-                        {t('nav.login')}
-                      </Button>
-                    </Link>
-                  )}
+  <Button
+    onClick={signOut}
+    variant="outline"
+    size="sm"
+    className={`border-morocco-red/30 hover:bg-morocco-red/10 hover:border-morocco-red/50 ${language === 'ar' ? 'font-arabic' : ''}`}
+  >
+    {t('nav.logout')}
+  </Button>
+) : (
+  <Link to="/auth">
+    <Button
+      variant="default"
+      size="sm"
+      className={`bg-morocco-red hover:bg-morocco-red/90 text-white border-0 ${language === 'ar' ? 'font-arabic' : ''}`}
+    >
+      {t('nav.login')}
+    </Button>
+  </Link>
+)}
                 </div>
               </div>
             </nav>

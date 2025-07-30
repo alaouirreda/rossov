@@ -4,6 +4,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Users, Trophy, Heart, Star, Calendar, Camera, ShoppingBag, FileText, MapPin, Clock, Crown, Flame, Download } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import backsect1 from '@/assets/backsect1.jpg';
+import backsect3 from '@/assets/backsect3.jpg';
+import logo from '@/assets/logo.png';
+import backsect4 from '@/assets/backsect4.jpg';
+import backsect6 from '@/assets/backsect6.jpg';
+import backsect12 from '@/assets/backsect12.jpg';
+import boutique from '@/assets/boutique.jpg';
 
 const Home: React.FC = () => {
   const { language, t } = useLanguage();
@@ -11,7 +18,7 @@ const Home: React.FC = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section - Atlas Lions Passion */}
-      <section className="relative h-screen flex items-center justify-center overflow-hidden moroccan-pattern">
+      <section className="relative h-screen flex items-center justify-center overflow-hidden" style={{ backgroundImage: `url(${backsect1})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/85 to-background/95" />
         
         {/* Stadium Energy Effects */}
@@ -23,12 +30,25 @@ const Home: React.FC = () => {
         
         <div className="relative z-10 text-center space-y-12 px-4 max-w-6xl mx-auto">
           <div className="space-y-8 animate-fade-in-up">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <Crown className="h-12 w-12 text-morocco-red animate-pulse" />
-              <h1 className={`text-6xl md:text-8xl font-black leading-tight ${language === 'ar' ? 'font-arabic' : ''}`}>
-                <span className="gradient-text drop-shadow-2xl">RossoVerde</span>
-              </h1>
-              <Crown className="h-12 w-12 text-morocco-green animate-pulse" />
+            <div className="flex flex-col items-center justify-center gap-4 mb-6">
+              <img src={logo} alt="RossoVerde Logo" className="h-24 w-24 md:h-32 md:w-32 object-contain mb-4" />
+              <div className="flex items-center justify-center gap-4">
+                <h1 className={`text-6xl md:text-8xl font-black leading-tight ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  <span className="drop-shadow-2xl">
+                    {language === 'ar' ? (
+                      <>
+                        <span className="text-morocco-red">روسو</span>
+                        <span className="text-morocco-green">فيردي</span>
+                      </>
+                    ) : (
+                      <>
+                        <span className="text-morocco-red">Rosso</span>
+                        <span className="text-morocco-green">Verde</span>
+                      </>
+                    )}
+                  </span>
+                </h1>
+              </div>
             </div>
             <p className={`text-3xl md:text-4xl text-foreground font-bold ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'جمعية مشجعي المنتخب المغربي' : language === 'fr' ? 'Association des Supporters de l\'Équipe Nationale Marocaine' : 'Moroccan National Team Supporters Association'}
@@ -45,34 +65,34 @@ const Home: React.FC = () => {
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
             <Link to="/membership">
-              <Button size="lg" className="btn-morocco hover-lift animate-pulse-glow text-xl px-12 py-6 rounded-xl font-bold">
+              <Button size="lg" className={`btn-morocco hover-lift animate-pulse-glow text-xl px-12 py-6 rounded-xl font-bold ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'انضم للعائلة' : language === 'fr' ? 'Rejoindre la Famille' : 'Join the Family'}
                 <Crown className="ml-3 h-6 w-6" />
-              </Button>
-            </Link>
-            <Link to="/gallery">
-              <Button size="lg" variant="outline" className="glass-effect hover-lift text-xl px-12 py-6 rounded-xl font-semibold border-2 border-morocco-red/30 text-foreground hover:bg-morocco-red/10">
-                {language === 'ar' ? 'شاهد التيفو' : language === 'fr' ? 'Voir les Tifos' : 'View Tifos'}
-                <Camera className="ml-3 h-6 w-6" />
               </Button>
             </Link>
           </div>
         </div>
 
-        {/* Floating Morocco Elements */}
-        <div className="absolute top-20 left-10 w-6 h-6 bg-morocco-red rounded-full animate-bounce delay-100 shadow-lg shadow-morocco-red/50" />
-        <div className="absolute top-40 right-20 w-8 h-8 bg-morocco-green rounded-full animate-bounce delay-300 shadow-lg shadow-morocco-green/50" />
-        <div className="absolute bottom-32 left-20 w-4 h-4 bg-morocco-red rounded-full animate-bounce delay-500 shadow-lg shadow-morocco-red/50" />
-        <div className="absolute bottom-20 right-10 w-7 h-7 bg-morocco-green rounded-full animate-bounce delay-700 shadow-lg shadow-morocco-green/50" />
+        {/* Smoke Effect Elements */}
+        <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-br from-morocco-red/20 to-transparent smoke-anim opacity-60 animate-pulse" style={{ animation: 'smoke-float 8s ease-in-out infinite' }} />
+        <div className="absolute top-40 right-20 w-20 h-20 bg-gradient-to-br from-morocco-green/20 to-transparent smoke-anim opacity-50 animate-pulse" style={{ animation: 'smoke-float-alt 10s ease-in-out infinite 2s' }} />
+        <div className="absolute bottom-32 left-20 w-12 h-12 bg-gradient-to-br from-morocco-red/15 to-transparent smoke-anim opacity-40 animate-pulse" style={{ animation: 'smoke-float 12s ease-in-out infinite 4s' }} />
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-gradient-to-br from-morocco-green/15 to-transparent smoke-anim opacity-45 animate-pulse" style={{ animation: 'smoke-float-alt 9s ease-in-out infinite 6s' }} />
+        <div className="absolute top-1/3 left-1/3 w-14 h-14 bg-gradient-to-br from-morocco-red/10 to-transparent smoke-anim opacity-35 animate-pulse" style={{ animation: 'smoke-float 11s ease-in-out infinite 1s' }} />
+        <div className="absolute bottom-1/3 right-1/3 w-16 h-16 bg-gradient-to-br from-morocco-green/10 to-transparent smoke-anim opacity-30 animate-pulse" style={{ animation: 'smoke-float-alt 13s ease-in-out infinite 3s' }} />
+        <div className="absolute top-1/4 left-1/2 w-10 h-10 bg-gradient-to-br from-morocco-red/20 to-transparent smoke-anim opacity-25 animate-pulse" style={{ animation: 'smoke-float 14s ease-in-out infinite 5s' }} />
+        <div className="absolute bottom-1/4 right-1/2 w-20 h-20 bg-gradient-to-br from-morocco-green/20 to-transparent smoke-anim opacity-20 animate-pulse" style={{ animation: 'smoke-float-alt 15s ease-in-out infinite 7s' }} />
       </section>
 
       {/* About the Association */}
-      <section className="py-24 px-4 bg-gradient-to-br from-background via-morocco-red/5 to-morocco-green/5">
-        <div className="container mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <section className="py-24 px-4 relative" style={{ backgroundImage: `url(${backsect3})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        {/* Gaussian Blur Overlay */}
+        <div className="absolute inset-0 bg-background/70 backdrop-blur-sm z-0" />
+        <div className="container mx-auto relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" key="about-section-grid">
             <div className="space-y-8">
               <div className="space-y-4">
-                <h2 className={`text-4xl md:text-5xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+                <h2 className={`text-4xl md:text-5xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                   {language === 'ar' ? 'قصة RossoVerde' : language === 'fr' ? 'L\'Histoire de RossoVerde' : 'The RossoVerde Story'}
                 </h2>
                 <div className="w-24 h-1 bg-gradient-to-r from-morocco-red to-morocco-green rounded-full" />
@@ -86,7 +106,7 @@ const Home: React.FC = () => {
                 }
               </p>
               <div className="grid grid-cols-2 gap-6">
-                <Card className="glass-effect border-morocco-red/20">
+                <Card className="glass-effect border-morocco-red/20" style={{ opacity: 0.8 }}>
                   <CardContent className="p-6 text-center">
                     <div className="w-16 h-16 mx-auto bg-gradient-to-br from-morocco-red to-morocco-green rounded-xl flex items-center justify-center mb-4">
                       <Users className="h-8 w-8 text-white" />
@@ -95,7 +115,7 @@ const Home: React.FC = () => {
                     <p className="text-sm text-muted-foreground">{language === 'ar' ? 'عضو' : language === 'fr' ? 'Membres' : 'Members'}</p>
                   </CardContent>
                 </Card>
-                <Card className="glass-effect border-morocco-green/20">
+                <Card className="glass-effect border-morocco-green/20" style={{ opacity: 0.8 }}>
                   <CardContent className="p-6 text-center">
                     <div className="w-16 h-16 mx-auto bg-gradient-to-br from-morocco-green to-morocco-red rounded-xl flex items-center justify-center mb-4">
                       <MapPin className="h-8 w-8 text-white" />
@@ -107,9 +127,9 @@ const Home: React.FC = () => {
               </div>
             </div>
             <div className="relative">
-              <Card className="glass-effect p-8 border-2 border-morocco-red/20">
+              <Card className="glass-effect p-8 border-2 border-morocco-red/20" style={{ opacity: 0.8 }}>
                 <CardHeader>
-                  <CardTitle className={`text-2xl font-bold text-center gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  <CardTitle className={`text-2xl font-bold text-center text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {language === 'ar' ? 'مهمتنا' : language === 'fr' ? 'Notre Mission' : 'Our Mission'}
                   </CardTitle>
                 </CardHeader>
@@ -146,13 +166,13 @@ const Home: React.FC = () => {
       </section>
 
       {/* Join Us - 12th Player */}
-      <section className="py-24 px-4 relative overflow-hidden">
+      <section className="py-24 px-4 relative overflow-hidden" style={{ backgroundImage: `url(${backsect4})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="absolute inset-0 bg-gradient-to-r from-morocco-red/20 via-background to-morocco-green/20" />
         <div className="absolute inset-0 moroccan-pattern opacity-20" />
         
         <div className="container mx-auto text-center space-y-12 relative z-10">
           <div className="space-y-6">
-            <h2 className={`text-5xl md:text-7xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-5xl md:text-7xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'كن اللاعب الثاني عشر' : language === 'fr' ? 'Soyez le 12ème Joueur' : 'Be the 12th Player'}
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-morocco-red to-morocco-green mx-auto rounded-full" />
@@ -167,7 +187,7 @@ const Home: React.FC = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-            <Card className="glass-effect hover-lift border-2 border-morocco-red/30">
+            <Card className="glass-effect hover-lift border-2 border-morocco-red/30" style={{ opacity: 0.8 }}>
               <CardContent className="p-8 text-center space-y-4">
                 <div className="w-20 h-20 mx-auto bg-gradient-to-br from-morocco-red to-morocco-green rounded-2xl flex items-center justify-center">
                   <Flame className="h-10 w-10 text-white" />
@@ -180,7 +200,7 @@ const Home: React.FC = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="glass-effect hover-lift border-2 border-morocco-green/30">
+            <Card className="glass-effect hover-lift border-2 border-morocco-green/30" style={{ opacity: 0.8 }}>
               <CardContent className="p-8 text-center space-y-4">
                 <div className="w-20 h-20 mx-auto bg-gradient-to-br from-morocco-green to-morocco-red rounded-2xl flex items-center justify-center">
                   <MapPin className="h-10 w-10 text-white" />
@@ -193,7 +213,7 @@ const Home: React.FC = () => {
                 </p>
               </CardContent>
             </Card>
-            <Card className="glass-effect hover-lift border-2 border-morocco-red/30">
+            <Card className="glass-effect hover-lift border-2 border-morocco-red/30" style={{ opacity: 0.8 }}>
               <CardContent className="p-8 text-center space-y-4">
                 <div className="w-20 h-20 mx-auto bg-gradient-to-br from-morocco-red to-morocco-green rounded-2xl flex items-center justify-center">
                   <Users className="h-10 w-10 text-white" />
@@ -209,7 +229,7 @@ const Home: React.FC = () => {
           </div>
           
           <Link to="/membership">
-            <Button size="lg" className="btn-morocco hover-lift text-2xl px-16 py-8 rounded-xl font-bold shadow-2xl">
+            <Button size="lg" className={`btn-morocco hover-lift text-2xl px-16 py-8 rounded-xl font-bold shadow-2xl mt-12 ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'انضم الآن' : language === 'fr' ? 'Rejoindre Maintenant' : 'Join Now'}
               <ArrowRight className="ml-4 h-8 w-8" />
             </Button>
@@ -218,21 +238,21 @@ const Home: React.FC = () => {
       </section>
 
       {/* Upcoming Matches & Countdown */}
-      <section className="py-20 px-4 bg-gradient-to-br from-background via-morocco-green/5 to-background">
+      <section className="py-20 px-4 relative" style={{ backgroundImage: `url(${backsect6})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
         <div className="container mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className={`text-4xl md:text-5xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-4xl md:text-5xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'المباريات القادمة' : language === 'fr' ? 'Prochains Matchs' : 'Upcoming Matches'}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-morocco-red to-morocco-green mx-auto rounded-full" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <Card className="glass-effect border-2 border-morocco-red/30 hover-lift">
+            <Card className="glass-effect border-2 border-morocco-red/30 hover-lift matches-opacity">
               <CardHeader className="text-center pb-4">
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <Calendar className="h-8 w-8 text-morocco-red" />
-                  <CardTitle className={`text-2xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  <CardTitle className={`text-2xl font-bold text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {language === 'ar' ? 'المباراة القادمة' : language === 'fr' ? 'Prochain Match' : 'Next Match'}
                   </CardTitle>
                 </div>
@@ -253,11 +273,11 @@ const Home: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect border-2 border-morocco-green/30 hover-lift">
+            <Card className="glass-effect border-2 border-morocco-green/30 hover-lift matches-opacity">
               <CardHeader className="text-center pb-4">
                 <div className="flex items-center justify-center gap-4 mb-4">
                   <Trophy className="h-8 w-8 text-morocco-green" />
-                  <CardTitle className={`text-2xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+                  <CardTitle className={`text-2xl font-bold text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {language === 'ar' ? 'البطولات القادمة' : language === 'fr' ? 'Prochains Tournois' : 'Upcoming Tournaments'}
                   </CardTitle>
                 </div>
@@ -284,73 +304,75 @@ const Home: React.FC = () => {
       </section>
 
       {/* News & Highlights */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
+      <section className="py-20 px-4 relative" style={{ backgroundImage: `url(${backsect12})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        {/* Light Blur Overlay */}
+        <div className="absolute inset-0 bg-background/60 backdrop-blur-sm z-0" />
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-16 space-y-4">
-            <h2 className={`text-4xl md:text-5xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-4xl md:text-5xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'أخبار وأحداث' : language === 'fr' ? 'Actualités & Événements' : 'News & Highlights'}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-morocco-red to-morocco-green mx-auto rounded-full" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="glass-effect hover-lift border-2 border-morocco-red/20">
+            <Card className="glass-effect hover-lift border-2 border-morocco-red/20" style={{ opacity: 0.8 }}>
               <CardContent className="p-6 space-y-4">
                 <div className="h-48 bg-gradient-to-br from-morocco-red/20 to-morocco-green/20 rounded-xl flex items-center justify-center">
                   <Camera className="h-16 w-16 text-muted-foreground" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-foreground">
+                  <h3 className={`text-xl font-bold text-foreground${language === 'ar' ? ' font-samir' : ''}`}>
                     {language === 'ar' ? 'تيفو رائع في مباراة البرتغال' : language === 'fr' ? 'Tifo spectaculaire contre le Portugal' : 'Spectacular Tifo vs Portugal'}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className={`text-muted-foreground text-sm${language === 'ar' ? ' font-janna' : ''}`}>
                     {language === 'ar' ? 'شاهد أجمل التيفو التي أبدعها مشجعو RossoVerde' : language === 'fr' ? 'Découvrez les plus beaux tifos créés par les supporters RossoVerde' : 'See the beautiful tifos created by RossoVerde supporters'}
                   </p>
                 </div>
                 <Link to="/news">
-                  <Button variant="outline" className="w-full border-morocco-red/30 hover:bg-morocco-red/10">
+                  <Button variant="outline" className={`w-full border-morocco-red/30 hover:bg-morocco-red/10 news-read-more-btn ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {language === 'ar' ? 'اقرأ المزيد' : language === 'fr' ? 'Lire Plus' : 'Read More'}
                   </Button>
                 </Link>
               </CardContent>
             </Card>
 
-            <Card className="glass-effect hover-lift border-2 border-morocco-green/20">
+            <Card className="glass-effect hover-lift border-2 border-morocco-green/20" style={{ opacity: 0.8 }}>
               <CardContent className="p-6 space-y-4">
                 <div className="h-48 bg-gradient-to-br from-morocco-green/20 to-morocco-red/20 rounded-xl flex items-center justify-center">
                   <Users className="h-16 w-16 text-muted-foreground" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-foreground">
+                  <h3 className={`text-xl font-bold text-foreground${language === 'ar' ? ' font-samir' : ''}`}>
                     {language === 'ar' ? 'قافلة إلى كأس أمم أفريقيا' : language === 'fr' ? 'Caravane vers la CAN' : 'Caravan to AFCON'}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className={`text-muted-foreground text-sm${language === 'ar' ? ' font-janna' : ''}`}>
                     {language === 'ar' ? 'انضم إلى القافلة الرسمية لمشجعي RossoVerde' : language === 'fr' ? 'Rejoignez la caravane officielle des supporters RossoVerde' : 'Join the official RossoVerde supporters caravan'}
                   </p>
                 </div>
                 <Link to="/news">
-                  <Button variant="outline" className="w-full border-morocco-green/30 hover:bg-morocco-green/10">
+                  <Button variant="outline" className={`w-full border-morocco-green/30 hover:bg-morocco-green/10 news-read-more-btn${language === 'ar' ? ' font-arabic' : ''}`}>
                     {language === 'ar' ? 'اقرأ المزيد' : language === 'fr' ? 'Lire Plus' : 'Read More'}
                   </Button>
                 </Link>
               </CardContent>
             </Card>
 
-            <Card className="glass-effect hover-lift border-2 border-morocco-red/20">
+            <Card className="glass-effect hover-lift border-2 border-morocco-red/20" style={{ opacity: 0.8 }}>
               <CardContent className="p-6 space-y-4">
                 <div className="h-48 bg-gradient-to-br from-morocco-red/20 to-morocco-green/20 rounded-xl flex items-center justify-center">
                   <Trophy className="h-16 w-16 text-muted-foreground" />
                 </div>
                 <div className="space-y-2">
-                  <h3 className="text-xl font-bold text-foreground">
+                  <h3 className={`text-xl font-bold text-foreground${language === 'ar' ? ' font-samir' : ''}`}>
                     {language === 'ar' ? 'المغرب يتأهل للمونديال' : language === 'fr' ? 'Le Maroc se qualifie pour la Coupe du Monde' : 'Morocco Qualifies for World Cup'}
                   </h3>
-                  <p className="text-muted-foreground text-sm">
+                  <p className={`text-muted-foreground text-sm${language === 'ar' ? ' font-janna' : ''}`}>
                     {language === 'ar' ? 'احتفال تاريخي بتأهل أسود الأطلس' : language === 'fr' ? 'Célébration historique de la qualification des Lions de l\'Atlas' : 'Historic celebration of Atlas Lions qualification'}
                   </p>
                 </div>
                 <Link to="/news">
-                  <Button variant="outline" className="w-full border-morocco-red/30 hover:bg-morocco-red/10">
+                  <Button variant="outline" className={`w-full border-morocco-red/30 hover:bg-morocco-red/10 news-read-more-btn${language === 'ar' ? ' font-arabic' : ''}`}>
                     {language === 'ar' ? 'اقرأ المزيد' : language === 'fr' ? 'Lire Plus' : 'Read More'}
                   </Button>
                 </Link>
@@ -360,7 +382,7 @@ const Home: React.FC = () => {
 
           <div className="text-center mt-12">
             <Link to="/news">
-              <Button size="lg" variant="outline" className="btn-morocco-outline hover-lift text-lg px-8 py-4 rounded-xl font-semibold">
+              <Button size="lg" variant="outline" className={`btn-morocco-outline hover-lift text-lg px-8 py-4 rounded-xl font-semibold ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'جميع الأخبار' : language === 'fr' ? 'Toutes les Actualités' : 'All News'}
                 <ArrowRight className="ml-3 h-6 w-6" />
               </Button>
@@ -373,7 +395,7 @@ const Home: React.FC = () => {
       <section className="py-20 px-4 bg-gradient-to-br from-background via-morocco-red/5 to-morocco-green/5">
         <div className="container mx-auto">
           <div className="text-center mb-16 space-y-4">
-            <h2 className={`text-4xl md:text-5xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-4xl md:text-5xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'معرض الصور والفيديو' : language === 'fr' ? 'Galerie Photos & Vidéos' : 'Photo & Video Gallery'}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-morocco-red to-morocco-green mx-auto rounded-full" />
@@ -389,7 +411,7 @@ const Home: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-              <Card key={item} className="glass-effect hover-lift border-2 border-morocco-red/20 group overflow-hidden">
+              <Card key={item} className="glass-effect hover-lift border-2 border-morocco-red/20 group overflow-hidden" style={{ opacity: 0.8 }}>
                 <div className="h-48 bg-gradient-to-br from-morocco-red/20 to-morocco-green/20 flex items-center justify-center group-hover:scale-105 transition-transform">
                   <Camera className="h-12 w-12 text-muted-foreground" />
                 </div>
@@ -399,7 +421,7 @@ const Home: React.FC = () => {
 
           <div className="text-center mt-12">
             <Link to="/gallery">
-              <Button size="lg" className="btn-morocco hover-lift text-lg px-8 py-4 rounded-xl font-bold">
+              <Button size="lg" className={`btn-morocco hover-lift text-lg px-8 py-4 rounded-xl font-bold ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'شاهد المعرض الكامل' : language === 'fr' ? 'Voir la Galerie Complète' : 'View Full Gallery'}
                 <Camera className="ml-3 h-6 w-6" />
               </Button>
@@ -409,10 +431,21 @@ const Home: React.FC = () => {
       </section>
 
       {/* Official Store */}
-      <section className="py-20 px-4">
-        <div className="container mx-auto">
+      <section
+        className="py-20 px-4 relative overflow-hidden"
+        style={{
+          backgroundImage: `url(${backsect6})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '60vh',
+        }}
+      >
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0" />
+        <div className="container mx-auto relative z-10">
           <div className="text-center mb-16 space-y-4">
-            <h2 className={`text-4xl md:text-5xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-4xl md:text-5xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'المتجر الرسمي' : language === 'fr' ? 'Boutique Officielle' : 'Official Store'}
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-morocco-red to-morocco-green mx-auto rounded-full" />
@@ -427,7 +460,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="glass-effect hover-lift border-2 border-morocco-red/30">
+            <Card className="glass-effect hover-lift border-2 border-morocco-red/30" style={{ opacity: 0.8 }}>
               <CardContent className="p-6 space-y-4">
                 <div className="h-48 bg-gradient-to-br from-morocco-red/20 to-morocco-green/20 rounded-xl flex items-center justify-center">
                   <ShoppingBag className="h-16 w-16 text-muted-foreground" />
@@ -444,7 +477,7 @@ const Home: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect hover-lift border-2 border-morocco-green/30">
+            <Card className="glass-effect hover-lift border-2 border-morocco-green/30" style={{ opacity: 0.8 }}>
               <CardContent className="p-6 space-y-4">
                 <div className="h-48 bg-gradient-to-br from-morocco-green/20 to-morocco-red/20 rounded-xl flex items-center justify-center">
                   <ShoppingBag className="h-16 w-16 text-muted-foreground" />
@@ -461,7 +494,7 @@ const Home: React.FC = () => {
               </CardContent>
             </Card>
 
-            <Card className="glass-effect hover-lift border-2 border-morocco-red/30">
+            <Card className="glass-effect hover-lift border-2 border-morocco-red/30" style={{ opacity: 0.8 }}>
               <CardContent className="p-6 space-y-4">
                 <div className="h-48 bg-gradient-to-br from-morocco-red/20 to-morocco-green/20 rounded-xl flex items-center justify-center">
                   <ShoppingBag className="h-16 w-16 text-muted-foreground" />
@@ -481,7 +514,7 @@ const Home: React.FC = () => {
 
           <div className="text-center mt-12">
             <Link to="/store">
-              <Button size="lg" className="btn-morocco hover-lift text-lg px-8 py-4 rounded-xl font-bold">
+              <Button size="lg" className={`btn-morocco hover-lift text-lg px-8 py-4 rounded-xl font-bold ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'تسوق الآن' : language === 'fr' ? 'Magasiner Maintenant' : 'Shop Now'}
                 <ShoppingBag className="ml-3 h-6 w-6" />
               </Button>
@@ -491,13 +524,24 @@ const Home: React.FC = () => {
       </section>
 
       {/* Official Charter */}
-      <section className="py-20 px-4 bg-gradient-to-br from-background via-morocco-green/5 to-background">
-        <div className="container mx-auto max-w-4xl">
-          <Card className="glass-effect border-2 border-morocco-red/30">
+      <section
+        className="py-20 px-4 relative overflow-hidden"
+        style={{
+          backgroundImage: `url(${boutique})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '60vh',
+        }}
+      >
+        {/* Overlay for readability */}
+        <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0" />
+        <div className="container mx-auto max-w-4xl relative z-10">
+          <Card className="glass-effect border-2 border-morocco-red/30" style={{ opacity: 0.8 }}>
             <CardHeader className="text-center pb-8">
               <div className="flex items-center justify-center gap-4 mb-4">
                 <FileText className="h-12 w-12 text-morocco-red" />
-                <CardTitle className={`text-3xl md:text-4xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+                <CardTitle className={`text-3xl md:text-4xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
                   {language === 'ar' ? 'الميثاق الرسمي' : language === 'fr' ? 'Charte Officielle' : 'Official Charter'}
                 </CardTitle>
               </div>
@@ -543,14 +587,10 @@ const Home: React.FC = () => {
                   <h3 className={`text-xl font-bold text-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {language === 'ar' ? 'الوثائق المتاحة:' : language === 'fr' ? 'Documents Disponibles:' : 'Available Documents:'}
                   </h3>
-                  <div className="space-y-3">
-                    <Button variant="outline" className="w-full justify-start border-morocco-red/30 hover:bg-morocco-red/10">
+                  <div className="space-y-3 flex flex-col items-center justify-center">
+                    <Button variant="outline" className={`w-full max-w-xs justify-center border-morocco-red/30 hover:bg-morocco-red/10 ${language === 'ar' ? 'font-arabic' : ''}`}>
                       <Download className="mr-3 h-4 w-4" />
                       {language === 'ar' ? 'تحميل الميثاق الرسمي' : language === 'fr' ? 'Télécharger la Charte Officielle' : 'Download Official Charter'}
-                    </Button>
-                    <Button variant="outline" className="w-full justify-start border-morocco-green/30 hover:bg-morocco-green/10">
-                      <Download className="mr-3 h-4 w-4" />
-                      {language === 'ar' ? 'تحميل اللوائح الداخلية' : language === 'fr' ? 'Télécharger le Règlement Intérieur' : 'Download Internal Regulations'}
                     </Button>
                   </div>
                 </div>
@@ -572,7 +612,7 @@ const Home: React.FC = () => {
               <Crown className="h-16 w-16 text-morocco-red animate-pulse" />
               <div className="w-16 h-1 bg-morocco-green rounded-full" />
             </div>
-            <h2 className={`text-5xl md:text-7xl font-black gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+            <h2 className={`text-5xl md:text-7xl font-black text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'عيش الشغف، كن الفخر' : language === 'fr' ? 'Vivez la Passion, Soyez la Fierté' : 'Live the Passion, Be the Pride'}
             </h2>
             <div className="w-32 h-1 bg-gradient-to-r from-morocco-red to-morocco-green mx-auto rounded-full" />
@@ -588,13 +628,13 @@ const Home: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-8 justify-center">
             <Link to="/membership">
-              <Button size="lg" className="btn-morocco hover-lift text-2xl px-16 py-8 rounded-xl font-bold shadow-2xl">
-                {language === 'ar' ? 'ابدأ رحلتك' : language === 'fr' ? 'Commencer Votre Voyage' : 'Start Your Journey'}
-                <Crown className="ml-4 h-8 w-8" />
-              </Button>
+                          <Button size="lg" className={`btn-morocco hover-lift text-2xl px-16 py-8 rounded-xl font-bold shadow-2xl ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {language === 'ar' ? 'ابدأ رحلتك' : language === 'fr' ? 'Commencer Votre Voyage' : 'Start Your Journey'}
+              <Crown className="ml-4 h-8 w-8" />
+            </Button>
             </Link>
             <Link to="/about">
-              <Button size="lg" variant="outline" className="hover-lift text-2xl px-16 py-8 rounded-xl font-bold border-2 border-morocco-green/50 text-foreground hover:bg-morocco-green/10">
+              <Button size="lg" variant="outline" className={`hover-lift text-2xl px-16 py-8 rounded-xl font-bold border-2 border-morocco-green/50 text-foreground hover:bg-morocco-green/10 ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'تعرف علينا' : language === 'fr' ? 'Découvrez-nous' : 'Discover Us'}
                 <Heart className="ml-4 h-8 w-8" />
               </Button>

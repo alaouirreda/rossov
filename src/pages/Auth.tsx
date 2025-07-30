@@ -133,7 +133,7 @@ const Auth: React.FC = () => {
       <div className="container mx-auto max-w-md">
         <div className="text-center mb-8">
           <img src="/logo.png" alt="RossoVerde" className="h-16 w-16 mx-auto mb-4" />
-          <h1 className={`text-3xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h1 className={`text-3xl font-bold text-morocco-green ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'مرحباً بك في RossoVerde' : language === 'fr' ? 'Bienvenue dans RossoVerde' : 'Welcome to RossoVerde'}
           </h1>
           <p className={`text-muted-foreground mt-2 ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -194,7 +194,7 @@ const Auth: React.FC = () => {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full btn-morocco" disabled={isLoading}>
+                  <Button type="submit" className={`w-full btn-morocco ${language === 'ar' ? 'font-arabic' : ''}`} disabled={isLoading}>
                     {isLoading ? (
                       <div className="flex items-center space-x-2">
                         <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>
@@ -253,7 +253,7 @@ const Auth: React.FC = () => {
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full btn-morocco" disabled={isLoading}>
+                  <Button type="submit" className={`w-full btn-morocco ${language === 'ar' ? 'font-arabic' : ''}`} disabled={isLoading}>
                     {isLoading ? (
                       <div className="flex items-center space-x-2">
                         <div className="animate-spin w-4 h-4 border-2 border-white border-t-transparent rounded-full"></div>

@@ -13,10 +13,11 @@ const Footer: React.FC = () => {
           {/* Logo & Description */}
           <div className="space-y-4">
             <Link to="/" className="flex items-center space-x-3">
-              <img src="/logo.png" alt="RossoVerde" className="h-10 w-10" />
-              <span className="font-bold text-xl gradient-text">RossoVerde</span>
+              <span className={`font-bold text-xl gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+                {language === 'ar' ? 'روسو فيردي' : 'RossoVerde'}
+              </span>
             </Link>
-            <p className="text-muted-foreground text-sm">
+            <p className={`text-muted-foreground text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? (
                 'نبضة أسود الأطلس. صوت واحد يوحدنا، وشغف يدفعنا.'
               ) : language === 'fr' ? (
@@ -43,20 +44,20 @@ const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">
+            <h3 className={`font-semibold text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'روابط سريعة' : language === 'fr' ? 'Liens Rapides' : 'Quick Links'}
             </h3>
             <nav className="flex flex-col space-y-2">
-              <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <Link to="/about" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {t('nav.about')}
               </Link>
-              <Link to="/membership" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <Link to="/membership" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {t('nav.membership')}
               </Link>
-              <Link to="/store" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <Link to="/store" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {t('nav.store')}
               </Link>
-              <Link to="/news" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <Link to="/news" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {t('nav.news')}
               </Link>
             </nav>
@@ -64,20 +65,20 @@ const Footer: React.FC = () => {
 
           {/* Support */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">
+            <h3 className={`font-semibold text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'الدعم' : language === 'fr' ? 'Support' : 'Support'}
             </h3>
             <nav className="flex flex-col space-y-2">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <a href="#" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'اتصل بنا' : language === 'fr' ? 'Contactez-nous' : 'Contact Us'}
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <a href="#" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'الأسئلة الشائعة' : language === 'fr' ? 'FAQ' : 'FAQ'}
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <a href="#" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'الخصوصية' : language === 'fr' ? 'Confidentialité' : 'Privacy'}
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">
+              <a href="#" className={`text-muted-foreground hover:text-primary transition-colors text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'الشروط' : language === 'fr' ? 'Termes' : 'Terms'}
               </a>
             </nav>
@@ -85,7 +86,7 @@ const Footer: React.FC = () => {
 
           {/* Contact Info */}
           <div className="space-y-4">
-            <h3 className="font-semibold text-foreground">
+            <h3 className={`font-semibold text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'معلومات الاتصال' : language === 'fr' ? 'Contact' : 'Contact Info'}
             </h3>
             <div className="space-y-3">
@@ -95,7 +96,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-3 text-sm text-muted-foreground">
                 <MapPin className="h-4 w-4" />
-                <span>
+                <span className={language === 'ar' ? 'font-arabic' : ''}>
                   {language === 'ar' ? 'الرباط، المغرب' : language === 'fr' ? 'Rabat, Maroc' : 'Rabat, Morocco'}
                 </span>
               </div>
@@ -104,8 +105,8 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-border/50 mt-8 pt-8 text-center">
-          <p className="text-muted-foreground text-sm">
-            © 2024 RossoVerde. {language === 'ar' ? 'جميع الحقوق محفوظة.' : language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
+          <p className={`text-muted-foreground text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
+            © 2024 {language === 'ar' ? 'روسو فيردي' : 'RossoVerde'}. {language === 'ar' ? 'جميع الحقوق محفوظة.' : language === 'fr' ? 'Tous droits réservés.' : 'All rights reserved.'}
           </p>
         </div>
       </div>

@@ -2,7 +2,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ShoppingCart, Star } from 'lucide-react';
+import { ShoppingCart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Store: React.FC = () => {
@@ -16,9 +16,6 @@ const Store: React.FC = () => {
       price: 65,
       originalPrice: 80,
       image: '/placeholder.svg',
-      rating: 4.8,
-      reviews: 124,
-      category: language === 'ar' ? 'ملابس' : language === 'fr' ? 'Vêtements' : 'Clothing',
       inStock: true
     },
     {
@@ -27,9 +24,6 @@ const Store: React.FC = () => {
       price: 25,
       originalPrice: null,
       image: '/placeholder.svg',
-      rating: 4.6,
-      reviews: 89,
-      category: language === 'ar' ? 'إكسسوارات' : language === 'fr' ? 'Accessoires' : 'Accessories',
       inStock: true
     },
     {
@@ -38,9 +32,6 @@ const Store: React.FC = () => {
       price: 30,
       originalPrice: null,
       image: '/placeholder.svg',
-      rating: 4.7,
-      reviews: 67,
-      category: language === 'ar' ? 'إكسسوارات' : language === 'fr' ? 'Accessoires' : 'Accessories',
       inStock: true
     },
     {
@@ -49,9 +40,6 @@ const Store: React.FC = () => {
       price: 20,
       originalPrice: 25,
       image: '/placeholder.svg',
-      rating: 4.5,
-      reviews: 45,
-      category: language === 'ar' ? 'منزلية' : language === 'fr' ? 'Maison' : 'Home',
       inStock: false
     },
     {
@@ -60,9 +48,6 @@ const Store: React.FC = () => {
       price: 55,
       originalPrice: null,
       image: '/placeholder.svg',
-      rating: 4.9,
-      reviews: 78,
-      category: language === 'ar' ? 'حقائب' : language === 'fr' ? 'Sacs' : 'Bags',
       inStock: true
     },
     {
@@ -71,19 +56,8 @@ const Store: React.FC = () => {
       price: 40,
       originalPrice: null,
       image: '/placeholder.svg',
-      rating: 4.8,
-      reviews: 92,
-      category: language === 'ar' ? 'إكسسوارات' : language === 'fr' ? 'Accessoires' : 'Accessories',
       inStock: true
     }
-  ];
-
-  const categories = [
-    language === 'ar' ? 'الكل' : language === 'fr' ? 'Tout' : 'All',
-    language === 'ar' ? 'ملابس' : language === 'fr' ? 'Vêtements' : 'Clothing',
-    language === 'ar' ? 'إكسسوارات' : language === 'fr' ? 'Accessoires' : 'Accessories',
-    language === 'ar' ? 'منزلية' : language === 'fr' ? 'Maison' : 'Home',
-    language === 'ar' ? 'حقائب' : language === 'fr' ? 'Sacs' : 'Bags'
   ];
 
   const handleAddToCart = (productId: number) => {
@@ -96,7 +70,7 @@ const Store: React.FC = () => {
       <div className="container mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-6">
-          <h1 className={`text-4xl md:text-6xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h1 className={`text-4xl md:text-6xl font-bold text-morocco-green ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'المتجر الرسمي' : language === 'fr' ? 'Boutique Officielle' : 'Official Store'}
           </h1>
           <p className={`text-xl text-muted-foreground max-w-3xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -107,19 +81,6 @@ const Store: React.FC = () => {
               'Discover our exclusive collection of official RossoVerde association products. From clothing to accessories, everything you need to show your love for the Moroccan national team.'
             }
           </p>
-        </div>
-
-        {/* Categories Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {categories.map((category, index) => (
-            <Button
-              key={index}
-              variant={index === 0 ? "default" : "outline"}
-              className={index === 0 ? "btn-morocco" : "hover-lift"}
-            >
-              {category}
-            </Button>
-          ))}
         </div>
 
         {/* Products Grid */}
@@ -146,22 +107,9 @@ const Store: React.FC = () => {
 
               <CardContent className="p-6 space-y-4">
                 <div className="space-y-2">
-                  <Badge variant="outline" className="text-xs">
-                    {product.category}
-                  </Badge>
                   <h3 className={`font-semibold text-lg line-clamp-2 ${language === 'ar' ? 'font-arabic' : ''}`}>
                     {product.name}
                   </h3>
-                </div>
-
-                <div className="flex items-center space-x-2">
-                  <div className="flex items-center space-x-1">
-                    <Star className="h-4 w-4 fill-yellow-400 text-yellow-400" />
-                    <span className="text-sm font-medium">{product.rating}</span>
-                  </div>
-                  <span className="text-sm text-muted-foreground">
-                    ({product.reviews} {language === 'ar' ? 'تقييم' : language === 'fr' ? 'avis' : 'reviews'})
-                  </span>
                 </div>
 
                 <div className="flex items-center justify-between">
@@ -195,7 +143,7 @@ const Store: React.FC = () => {
 
         {/* Newsletter Section */}
         <div className="mt-20 text-center bg-gradient-to-r from-primary-red/10 to-primary-green/10 rounded-lg p-12">
-          <h2 className={`text-3xl font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h2 className={`text-3xl font-bold mb-4 text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'كن أول من يعرف' : language === 'fr' ? 'Soyez le premier à savoir' : 'Be the First to Know'}
           </h2>
           <p className={`text-muted-foreground mb-6 max-w-2xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -212,7 +160,7 @@ const Store: React.FC = () => {
               placeholder={language === 'ar' ? 'بريدك الإلكتروني' : language === 'fr' ? 'Votre email' : 'Your email'}
               className="flex-1 px-4 py-2 rounded-lg bg-background border border-border focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <Button className="btn-morocco">
+            <Button className={`btn-morocco ${language === 'ar' ? 'font-arabic' : ''}`}>
               {language === 'ar' ? 'اشترك' : language === 'fr' ? 'S\'abonner' : 'Subscribe'}
             </Button>
           </div>

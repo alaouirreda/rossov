@@ -93,7 +93,7 @@ const Gallery: React.FC = () => {
       <div className="container mx-auto">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-6">
-          <h1 className={`text-4xl md:text-6xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h1 className={`text-4xl md:text-6xl font-bold text-morocco-green ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'معرض الذكريات' : language === 'fr' ? 'Galerie des Souvenirs' : 'Gallery of Memories'}
           </h1>
           <p className={`text-xl text-muted-foreground max-w-3xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -222,7 +222,7 @@ const Gallery: React.FC = () => {
 
         {/* Call to Action */}
         <div className="mt-20 text-center bg-gradient-to-r from-primary-red/10 to-primary-green/10 rounded-lg p-12">
-          <h2 className={`text-3xl font-bold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
+                      <h2 className={`text-3xl font-bold mb-4 text-white ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'شارك ذكرياتك معنا' : language === 'fr' ? 'Partagez vos souvenirs avec nous' : 'Share Your Memories With Us'}
           </h2>
           <p className={`text-muted-foreground mb-6 max-w-2xl mx-auto ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -233,7 +233,7 @@ const Gallery: React.FC = () => {
               'Do you have special photos or videos with the Moroccan national team? Share them with us to become part of our gallery of memories.'
             }
           </p>
-          <Button className="btn-morocco hover-lift">
+          <Button className={`btn-morocco hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'شارك المحتوى' : language === 'fr' ? 'Partager du contenu' : 'Share Content'}
           </Button>
         </div>

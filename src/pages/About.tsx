@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Target, Users, Globe, Award } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import backsect4 from '@/assets/backsect4.jpg';
 
 const About: React.FC = () => {
   const { language } = useLanguage();
@@ -46,14 +47,24 @@ const About: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen py-20 px-4">
-      <div className="container mx-auto">
+    <div
+      className="min-h-screen py-20 px-4 relative overflow-hidden"
+      style={{
+        backgroundImage: `url(${backsect4})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-0" />
+      <div className="container mx-auto relative z-10">
         {/* Hero Section */}
         <div className="text-center mb-16 space-y-6">
-          <h1 className={`text-4xl md:text-6xl font-bold gradient-text ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <h1 className={`text-4xl md:text-6xl font-bold text-white drop-shadow-lg ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'من نحن' : language === 'fr' ? 'Qui Sommes-Nous' : 'About Us'}
           </h1>
-          <p className={`text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed ${language === 'ar' ? 'font-arabic' : ''}`}>
+          <p className={`text-xl text-white max-w-3xl mx-auto leading-relaxed drop-shadow ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 
               'RossoVerde هي جمعية مشجعي المنتخب المغربي الرسمية، تأسست بهدف توحيد قلوب وأصوات عشاق الكرة المغربية حول العالم. نحن نؤمن بأن كرة القدم أكثر من مجرد لعبة - إنها هوية ووطن وانتماء.' :
               language === 'fr' ? 
@@ -65,13 +76,13 @@ const About: React.FC = () => {
 
         {/* Story Section */}
         <div className="mb-20">
-          <Card className="glass-effect">
+          <Card className="glass-effect" style={{ background: 'rgba(30,30,30,0.85)' }}>
             <CardContent className="p-8 md:p-12">
-              <h2 className={`text-3xl font-bold mb-6 text-center ${language === 'ar' ? 'font-arabic' : ''}`}>
+              <h2 className={`text-3xl font-bold mb-6 text-center text-white drop-shadow-lg ${language === 'ar' ? 'font-arabic' : ''}`}>
                 {language === 'ar' ? 'قصتنا' : language === 'fr' ? 'Notre Histoire' : 'Our Story'}
               </h2>
-              <div className={`prose prose-lg max-w-none text-muted-foreground ${language === 'ar' ? 'font-arabic text-right' : ''}`}>
-                <p className="mb-6">
+              <div className={`prose prose-lg max-w-none text-white drop-shadow ${language === 'ar' ? 'font-arabic text-right' : ''}`}>
+                <p className="mb-6 text-white">
                   {language === 'ar' ? 
                     'تأسست جمعية RossoVerde في عام 2018 من قبل مجموعة من المشجعين المتحمسين الذين آمنوا بضرورة وجود منصة موحدة لجميع عشاق المنتخب المغربي. بدأت الفكرة بسيطة: كيف يمكننا أن نجعل صوت المشجعين المغاربة أقوى وأكثر تأثيراً؟' :
                     language === 'fr' ? 
@@ -102,7 +113,7 @@ const About: React.FC = () => {
 
         {/* Values Section */}
         <div className="space-y-8">
-          <h2 className={`text-3xl font-bold text-center ${language === 'ar' ? 'font-arabic' : ''}`}>
+                      <h2 className={`text-3xl font-bold text-center text-white drop-shadow-lg ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'قيمنا ومبادئنا' : language === 'fr' ? 'Nos Valeurs et Principes' : 'Our Values and Principles'}
           </h2>
           
@@ -110,19 +121,15 @@ const About: React.FC = () => {
             {values.map((value, index) => {
               const Icon = value.icon;
               return (
-                <Card key={index} className="glass-effect hover-lift">
+                <Card key={index} className="glass-effect hover-lift" style={{ background: 'rgba(30,30,30,0.85)' }}>
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-gradient-to-br from-primary-red to-primary-green rounded-lg flex items-center justify-center flex-shrink-0">
                         <Icon className="h-6 w-6 text-white" />
                       </div>
                       <div className="space-y-2">
-                        <h3 className={`text-xl font-semibold ${language === 'ar' ? 'font-arabic' : ''}`}>
-                          {value.title}
-                        </h3>
-                        <p className={`text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
-                          {value.description}
-                        </p>
+                        <h3 className={`text-xl font-semibold text-white drop-shadow ${language === 'ar' ? 'font-arabic' : ''}`}>{value.title}</h3>
+                        <p className={`text-white drop-shadow ${language === 'ar' ? 'font-arabic' : ''}`}>{value.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -141,12 +148,10 @@ const About: React.FC = () => {
             { number: '6', label: language === 'ar' ? 'سنوات' : language === 'fr' ? 'Années' : 'Years' }
           ].map((stat, index) => (
             <div key={index} className="text-center space-y-2">
-              <div className="text-3xl md:text-4xl font-bold gradient-text">
+              <div className="text-3xl md:text-4xl font-bold gradient-text text-white drop-shadow-lg">
                 {stat.number}
               </div>
-              <div className={`text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>
-                {stat.label}
-              </div>
+              <div className={`text-white drop-shadow ${language === 'ar' ? 'font-arabic' : ''}`}>{stat.label}</div>
             </div>
           ))}
         </div>
