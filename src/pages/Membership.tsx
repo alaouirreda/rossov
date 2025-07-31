@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Check, Star, Crown } from 'lucide-react';
+import { Check, Star, Crown, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const Membership: React.FC = () => {
@@ -10,36 +10,51 @@ const Membership: React.FC = () => {
 
   const plans = [
     {
-      name: language === 'ar' ? 'منتسب' : language === 'fr' ? 'Affilié' : 'Affiliate',
-      price: 15,
-      icon: Star,
-      popular: false,
-      features: [
-        language === 'ar' ? 'الوصول إلى المحتوى الحصري' : language === 'fr' ? 'Accès au contenu exclusif' : 'Access to exclusive content',
-        language === 'ar' ? 'نشرة إخبارية شهرية' : language === 'fr' ? 'Newsletter mensuelle' : 'Monthly newsletter',
-        language === 'ar' ? 'خصومات على المنتجات' : language === 'fr' ? 'Réductions sur les produits' : 'Discounts on products',
-        language === 'ar' ? 'دعوات للفعاليات العامة' : language === 'fr' ? 'Invitations aux événements publics' : 'Invitations to public events'
-      ]
-    },
-    {
-      name: language === 'ar' ? 'مشترك' : language === 'fr' ? 'Abonné' : 'Subscriber',
-      price: 30,
+      name: language === 'ar' ? 'داعم' : language === 'fr' ? 'Contributeur' : 'Contributor',
+      price: 400,
+      description: language === 'ar' ? 'لدعم معزز' : language === 'fr' ? 'Pour un soutien renforcé' : 'For enhanced support',
       icon: Crown,
       popular: true,
       features: [
-        language === 'ar' ? 'جميع مزايا العضوية المنتسبة' : language === 'fr' ? 'Tous les avantages de l\'adhésion affiliée' : 'All affiliate membership benefits',
-        language === 'ar' ? 'الوصول إلى الفعاليات الخاصة' : language === 'fr' ? 'Accès aux événements privés' : 'Access to private events',
-        language === 'ar' ? 'الوصول المبكر للتذاكر' : language === 'fr' ? 'Accès anticipé aux billets' : 'Early access to tickets',
-        language === 'ar' ? 'هدايا حصرية' : language === 'fr' ? 'Cadeaux exclusifs' : 'Exclusive merchandise',
-        language === 'ar' ? 'دعم مباشر 24/7' : language === 'fr' ? 'Support direct 24/7' : 'Direct 24/7 support',
-        language === 'ar' ? 'لقاءات مع اللاعبين' : language === 'fr' ? 'Rencontres avec les joueurs' : 'Meet & greet with players'
+        language === 'ar' ? 'وصول مميز للفعاليات وأولوية في التذاكر' : language === 'fr' ? 'Accès privilège aux événements et ticketing prioritaire' : 'Privileged access to events and priority ticketing',
+        language === 'ar' ? 'يشمل منتجات حصرية' : language === 'fr' ? 'Inclut produits exclusifs' : 'Includes exclusive products',
+      ]
+    },
+    {
+        name: language === 'ar' ? 'باقة بريميوم' : language === 'fr' ? 'Pack Premium' : 'Premium Pack',
+        price: 300,
+        description: language === 'ar' ? 'اشتراك + منتج حصري' : language === 'fr' ? 'Abonnement + Produit exclusif' : 'Subscription + Exclusive Product',
+        icon: Star,
+        popular: false,
+        features: [
+            language === 'ar' ? 'مثالي للأعضاء الذين يرغبون في الاستفادة من المكافآت المادية' : language === 'fr' ? 'Idéal pour les membres qui veulent profiter de bonus matériels' : 'Ideal for members who want to enjoy material bonuses',
+        ]
+    },
+    {
+      name: language === 'ar' ? 'الباقة العادية' : language === 'fr' ? 'Pack Standard' : 'Standard Pack',
+      price: 100,
+      description: language === 'ar' ? 'اشتراك فقط' : language === 'fr' ? 'Abonnement seul' : 'Subscription only',
+      icon: Star,
+      popular: false,
+      features: [
+        language === 'ar' ? 'الوصول إلى المجتمع والمعلومات الرسمية' : language === 'fr' ? 'Accès à la communauté et informations officielles' : 'Access to the community and official information',
+      ]
+    },
+    {
+      name: language === 'ar' ? 'السعر التضامني' : language === 'fr' ? 'Tarif Solidaire' : 'Solidarity Rate',
+      price: 50,
+      description: language === 'ar' ? 'خاص بالطلاب أو العاطلين عن العمل' : language === 'fr' ? 'Spécial étudiants ou sans emploi' : 'Special for students or unemployed',
+      icon: Heart,
+      popular: false,
+      features: [
+        language === 'ar' ? 'يسمح بدعم الجمعية بسعر مخفض' : language === 'fr' ? 'Permet de soutenir l’association à tarif réduit' : 'Allows supporting the association at a reduced rate',
       ]
     }
   ];
 
   const handleSubscribe = (planName: string, price: number) => {
     // This will be connected to Stripe later
-    console.log(`Subscribing to ${planName} for $${price}/month`);
+    console.log(`Subscribing to ${planName} for ${price} MAD/month`);
   };
 
   return (
@@ -64,7 +79,7 @@ const Membership: React.FC = () => {
         </div>
 
         {/* Membership Plans */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
           {plans.map((plan, index) => {
             const Icon = plan.icon;
             return (
@@ -86,11 +101,12 @@ const Membership: React.FC = () => {
                   
                   <div className="space-y-2">
                     <div className="text-4xl font-bold gradient-text">
-                      ${plan.price}
+                      {plan.price} MAD
                       <span className="text-lg text-muted-foreground font-normal">
                         /{language === 'ar' ? 'شهر' : language === 'fr' ? 'mois' : 'month'}
                       </span>
                     </div>
+                    <p className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>{plan.description}</p>
                   </div>
                 </CardHeader>
 
@@ -126,8 +142,7 @@ const Membership: React.FC = () => {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
+            {[{
                 title: language === 'ar' ? 'مجتمع حقيقي' : language === 'fr' ? 'Vraie Communauté' : 'Real Community',
                 description: language === 'ar' ? 'انضم إلى آلاف المشجعين المتحمسين من جميع أنحاء العالم' : language === 'fr' ? 'Rejoignez des milliers de supporters passionnés du monde entier' : 'Join thousands of passionate supporters from around the world'
               },
@@ -161,8 +176,7 @@ const Membership: React.FC = () => {
           </h2>
           
           <div className="max-w-3xl mx-auto space-y-4">
-            {[
-              {
+            {[{
                 question: language === 'ar' ? 'كيف يمكنني إلغاء اشتراكي؟' : language === 'fr' ? 'Comment puis-je annuler mon abonnement?' : 'How can I cancel my subscription?',
                 answer: language === 'ar' ? 'يمكنك إلغاء اشتراكك في أي وقت من خلال حسابك الشخصي أو التواصل مع فريق الدعم.' : language === 'fr' ? 'Vous pouvez annuler votre abonnement à tout moment via votre compte personnel ou en contactant l\'équipe de support.' : 'You can cancel your subscription at any time through your personal account or by contacting the support team.'
               },
