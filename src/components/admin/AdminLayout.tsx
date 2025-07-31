@@ -10,6 +10,7 @@ import {
   ShoppingCart, 
   FileText, 
   Image,
+  Settings,
   ArrowLeft
 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -39,6 +40,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       icon: CreditCard
     },
     {
+      name: language === 'ar' ? 'باقات العضوية' : language === 'fr' ? 'Niveaux adhésion' : 'Membership Tiers',
+      href: '/admin/membership-tiers',
+      icon: Settings
+    },
+    {
       name: language === 'ar' ? 'المتجر' : language === 'fr' ? 'Boutique' : 'Store',
       href: '/admin/store',
       icon: Store
@@ -57,6 +63,11 @@ const AdminLayout: React.FC<AdminLayoutProps> = ({ children }) => {
       name: language === 'ar' ? 'المعرض' : language === 'fr' ? 'Galerie' : 'Gallery',
       href: '/admin/gallery',
       icon: Image
+    },
+    {
+      name: language === 'ar' ? 'إدارة المحتوى' : language === 'fr' ? 'Gestion contenu' : 'Content Management',
+      href: '/admin/cms',
+      icon: Settings
     }
   ];
 

@@ -14,6 +14,7 @@ import Gallery from "@/pages/Gallery";
 import News from "@/pages/News";
 import NewsPost from "@/pages/NewsPost";
 import Auth from "@/pages/Auth";
+import MemberDashboard from "@/pages/MemberDashboard";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import NotFound from "@/pages/NotFound";
 
@@ -37,6 +38,7 @@ const App = () => (
                 <Route path="news" element={<News />} />
                 <Route path="news/:id" element={<NewsPost />} />
                 <Route path="auth" element={<Auth />} />
+                <Route path="member" element={<MemberDashboard />} />
                 <Route path="admin/*" element={<AdminDashboard />} />
               </Route>
               <Route path="*" element={<NotFound />} />

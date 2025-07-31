@@ -10,6 +10,8 @@ import StoreManagement from '@/components/admin/StoreManagement';
 import OrdersManagement from '@/components/admin/OrdersManagement';
 import PostsManagement from '@/components/admin/PostsManagement';
 import GalleryManagement from '@/components/admin/GalleryManagement';
+import CMSManagement from '@/components/admin/CMSManagement';
+import MembershipTiersManagement from '@/components/admin/MembershipTiersManagement';
 
 const AdminDashboard: React.FC = () => {
   const { user, loading } = useAuth();
@@ -42,6 +44,8 @@ const AdminDashboard: React.FC = () => {
         <Route path="orders" element={<OrdersManagement />} />
         <Route path="posts" element={<PostsManagement />} />
         <Route path="gallery" element={<GalleryManagement />} />
+        <Route path="cms" element={<CMSManagement />} />
+        <Route path="membership-tiers" element={<MembershipTiersManagement />} />
       </Routes>
     </AdminLayout>
   );

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { useAuth } from '@/contexts/AuthContext';
+import { useProfile } from '@/hooks/useProfile';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,6 +18,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
   const { user, signOut } = useAuth();
+  const { profile } = useProfile();
 
   const navigation = [
     { name: t('nav.home'), href: '/' },
@@ -27,8 +29,15 @@ const Header: React.FC = () => {
     { name: t('nav.news'), href: '/news' },
   ];
 
-  if (user) {
-    navigation.push({ name: t('nav.admin'), href: '/admin' });
+  if (user && profile) {
+    if (profile.role === 'admin') {
+      navigation.push({ name: t('nav.admin'), href: '/admin' });
+    } else {
+      navigation.push({ 
+        name: language === 'ar' ? 'حسابي' : language === 'fr' ? 'Mon compte' : 'My Account', 
+        href: '/member' 
+      });
+    }
   }
 
   const isActive = (href: string) => {

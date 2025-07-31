@@ -4,58 +4,38 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Check, Star, Crown, Heart } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useMembershipTiers } from '@/hooks/useMembershipTiers';
+import { useProfile } from '@/hooks/useProfile';
+import { Link } from 'react-router-dom';
 
 const Membership: React.FC = () => {
   const { language, t } = useLanguage();
+  const { tiers, loading } = useMembershipTiers();
+  const { profile } = useProfile();
 
-  const plans = [
-    {
-      name: language === 'ar' ? 'داعم' : language === 'fr' ? 'Contributeur' : 'Contributor',
-      price: 400,
-      description: language === 'ar' ? 'لدعم معزز' : language === 'fr' ? 'Pour un soutien renforcé' : 'For enhanced support',
-      icon: Crown,
-      popular: true,
-      features: [
-        language === 'ar' ? 'وصول مميز للفعاليات وأولوية في التذاكر' : language === 'fr' ? 'Accès privilège aux événements et ticketing prioritaire' : 'Privileged access to events and priority ticketing',
-        language === 'ar' ? 'يشمل منتجات حصرية' : language === 'fr' ? 'Inclut produits exclusifs' : 'Includes exclusive products',
-      ]
-    },
-    {
-        name: language === 'ar' ? 'باقة بريميوم' : language === 'fr' ? 'Pack Premium' : 'Premium Pack',
-        price: 300,
-        description: language === 'ar' ? 'اشتراك + منتج حصري' : language === 'fr' ? 'Abonnement + Produit exclusif' : 'Subscription + Exclusive Product',
-        icon: Star,
-        popular: false,
-        features: [
-            language === 'ar' ? 'مثالي للأعضاء الذين يرغبون في الاستفادة من المكافآت المادية' : language === 'fr' ? 'Idéal pour les membres qui veulent profiter de bonus matériels' : 'Ideal for members who want to enjoy material bonuses',
-        ]
-    },
-    {
-      name: language === 'ar' ? 'الباقة العادية' : language === 'fr' ? 'Pack Standard' : 'Standard Pack',
-      price: 100,
-      description: language === 'ar' ? 'اشتراك فقط' : language === 'fr' ? 'Abonnement seul' : 'Subscription only',
-      icon: Star,
-      popular: false,
-      features: [
-        language === 'ar' ? 'الوصول إلى المجتمع والمعلومات الرسمية' : language === 'fr' ? 'Accès à la communauté et informations officielles' : 'Access to the community and official information',
-      ]
-    },
-    {
-      name: language === 'ar' ? 'السعر التضامني' : language === 'fr' ? 'Tarif Solidaire' : 'Solidarity Rate',
-      price: 50,
-      description: language === 'ar' ? 'خاص بالطلاب أو العاطلين عن العمل' : language === 'fr' ? 'Spécial étudiants ou sans emploi' : 'Special for students or unemployed',
-      icon: Heart,
-      popular: false,
-      features: [
-        language === 'ar' ? 'يسمح بدعم الجمعية بسعر مخفض' : language === 'fr' ? 'Permet de soutenir l’association à tarif réduit' : 'Allows supporting the association at a reduced rate',
-      ]
-    }
-  ];
 
   const handleSubscribe = (planName: string, price: number) => {
     // This will be connected to Stripe later
     console.log(`Subscribing to ${planName} for ${price} MAD/month`);
   };
+
+  const getIconForTier = (tierName: string) => {
+    if (tierName.toLowerCase().includes('contributor') || tierName.toLowerCase().includes('contributeur') || tierName.toLowerCase().includes('داعم')) {
+      return Crown;
+    }
+    if (tierName.toLowerCase().includes('solidarity') || tierName.toLowerCase().includes('solidaire') || tierName.toLowerCase().includes('تضامني')) {
+      return Heart;
+    }
+    return Star;
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full"></div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen py-20 px-4">
@@ -80,11 +60,16 @@ const Membership: React.FC = () => {
 
         {/* Membership Plans */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
-          {plans.map((plan, index) => {
-            const Icon = plan.icon;
+          {tiers.map((tier, index) => {
+            const Icon = getIconForTier(tier.name_en);
+            const name = language === 'ar' ? tier.name_ar : language === 'fr' ? tier.name_fr : tier.name_en;
+            const description = language === 'ar' ? tier.description_ar : language === 'fr' ? tier.description_fr : tier.description_en;
+            const features = language === 'ar' ? tier.features_ar : language === 'fr' ? tier.features_fr : tier.features_en;
+            const isPopular = tier.sort_order === 3; // Premium pack is popular
+            
             return (
-              <Card key={index} className={`glass-effect hover-lift relative ${plan.popular ? 'ring-2 ring-primary' : ''}`}>
-                {plan.popular && (
+              <Card key={tier.id} className={`glass-effect hover-lift relative ${isPopular ? 'ring-2 ring-primary' : ''}`}>
+                {isPopular && (
                   <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-primary-red to-primary-green text-white">
                     {language === 'ar' ? 'الأكثر شعبية' : language === 'fr' ? 'Le Plus Populaire' : 'Most Popular'}
                   </Badge>
@@ -96,23 +81,23 @@ const Membership: React.FC = () => {
                   </div>
                   
                   <CardTitle className={`text-2xl font-bold ${language === 'ar' ? 'font-arabic' : ''}`}>
-                    {plan.name}
+                    {name}
                   </CardTitle>
                   
                   <div className="space-y-2">
                     <div className="text-4xl font-bold gradient-text">
-                      {plan.price} MAD
+                      {tier.price} {tier.currency}
                       <span className="text-lg text-muted-foreground font-normal">
                         /{language === 'ar' ? 'شهر' : language === 'fr' ? 'mois' : 'month'}
                       </span>
                     </div>
-                    <p className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>{plan.description}</p>
+                    <p className={`text-sm text-muted-foreground ${language === 'ar' ? 'font-arabic' : ''}`}>{description}</p>
                   </div>
                 </CardHeader>
 
                 <CardContent className="space-y-6">
                   <ul className="space-y-3">
-                    {plan.features.map((feature, featureIndex) => (
+                    {features?.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-center space-x-3">
                         <Check className="h-5 w-5 text-primary-green flex-shrink-0" />
                         <span className={`text-sm ${language === 'ar' ? 'font-arabic' : ''}`}>
@@ -122,13 +107,24 @@ const Membership: React.FC = () => {
                     ))}
                   </ul>
 
-                  <Button 
-                    className={`w-full ${plan.popular ? 'btn-morocco' : ''} hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}
-                    variant={plan.popular ? 'default' : 'outline'}
-                    onClick={() => handleSubscribe(plan.name, plan.price)}
-                  >
-                    {language === 'ar' ? 'اشترك الآن' : language === 'fr' ? 'S\'abonner maintenant' : 'Subscribe Now'}
-                  </Button>
+                  {profile?.charter_accepted ? (
+                    <Button 
+                      className={`w-full ${isPopular ? 'btn-morocco' : ''} hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}
+                      variant={isPopular ? 'default' : 'outline'}
+                      onClick={() => handleSubscribe(name, tier.price)}
+                    >
+                      {language === 'ar' ? 'اشترك الآن' : language === 'fr' ? 'S\'abonner maintenant' : 'Subscribe Now'}
+                    </Button>
+                  ) : (
+                    <Link to="/auth">
+                      <Button 
+                        className={`w-full ${isPopular ? 'btn-morocco' : ''} hover-lift ${language === 'ar' ? 'font-arabic' : ''}`}
+                        variant={isPopular ? 'default' : 'outline'}
+                      >
+                        {language === 'ar' ? 'سجل للاشتراك' : language === 'fr' ? 'S\'inscrire pour s\'abonner' : 'Sign up to Subscribe'}
+                      </Button>
+                    </Link>
+                  )}
                 </CardContent>
               </Card>
             );
