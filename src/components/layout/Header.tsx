@@ -40,6 +40,14 @@ const Header: React.FC = () => {
     }
   }
 
+  // Add admin setup link for development
+  if (!user || (profile && profile.role !== 'admin')) {
+    navigation.push({
+      name: language === 'ar' ? 'إعداد المدير' : language === 'fr' ? 'Config Admin' : 'Admin Setup',
+      href: '/admin-setup'
+    });
+  }
+
   const isActive = (href: string) => {
     return location.pathname === href;
   };

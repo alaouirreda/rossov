@@ -16,6 +16,8 @@ import NewsPost from "@/pages/NewsPost";
 import Auth from "@/pages/Auth";
 import MemberDashboard from "@/pages/MemberDashboard";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminRoute from "@/components/admin/AdminRoute";
+import AdminSetup from "@/pages/AdminSetup";
 import NotFound from "@/pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -39,7 +41,12 @@ const App = () => (
                 <Route path="news/:id" element={<NewsPost />} />
                 <Route path="auth" element={<Auth />} />
                 <Route path="member" element={<MemberDashboard />} />
-                <Route path="admin/*" element={<AdminDashboard />} />
+                <Route path="admin-setup" element={<AdminSetup />} />
+                <Route path="admin/*" element={
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                } />
               </Route>
               <Route path="*" element={<NotFound />} />
             </Routes>
