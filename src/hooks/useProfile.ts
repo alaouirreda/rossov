@@ -22,6 +22,9 @@ export const useProfile = () => {
     try {
       setLoading(true);
       setError(null);
+      
+      console.log('Fetching profile for user:', user?.id);
+      
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -29,6 +32,10 @@ export const useProfile = () => {
         .single();
 
       if (error) throw error;
+      
+      console.log('Profile data received:', data);
+      console.log('User role:', data?.role);
+      
       setProfile(data);
     } catch (err) {
       const errorMessage = err instanceof Error ? err.message : 'Failed to fetch profile';

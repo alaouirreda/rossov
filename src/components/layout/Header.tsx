@@ -20,6 +20,14 @@ const Header: React.FC = () => {
   const { user, signOut } = useAuth();
   const { profile, loading } = useProfile();
 
+  // Debug logging
+  React.useEffect(() => {
+    console.log('Header - User:', user?.id);
+    console.log('Header - Profile:', profile);
+    console.log('Header - Profile Role:', profile?.role);
+    console.log('Header - Loading:', loading);
+  }, [user, profile, loading]);
+
   const navigation = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.about'), href: '/about' },
