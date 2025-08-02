@@ -18,7 +18,7 @@ const Header: React.FC = () => {
   const location = useLocation();
   const { language, setLanguage, t } = useLanguage();
   const { user, signOut } = useAuth();
-  const { profile } = useProfile();
+  const { profile, loading } = useProfile();
 
   const navigation = [
     { name: t('nav.home'), href: '/' },
@@ -29,7 +29,8 @@ const Header: React.FC = () => {
     { name: t('nav.news'), href: '/news' },
   ];
 
-  if (user && profile) {
+  // Add admin or member dashboard links
+  if (user && profile && !loading) {
     if (profile.role === 'admin') {
       navigation.push({ name: t('nav.admin'), href: '/admin' });
     } else {
@@ -40,8 +41,8 @@ const Header: React.FC = () => {
     }
   }
 
-  // Add admin setup link for development
-  if (!user || (profile && profile.role !== 'admin')) {
+  // Add admin setup link for development (only when not admin)
+  if (!user || (profile && profile.role !== 'admin' && !loading)) {
     navigation.push({
       name: language === 'ar' ? 'إعداد المدير' : language === 'fr' ? 'Config Admin' : 'Admin Setup',
       href: '/admin-setup'

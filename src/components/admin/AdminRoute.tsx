@@ -30,7 +30,7 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
     return <Navigate to="/auth" replace />;
   }
 
-  if (!profile || profile.role !== 'admin') {
+  if (profile && profile.role !== 'admin') {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center space-y-4">
@@ -45,7 +45,20 @@ const AdminRoute: React.FC<AdminRouteProps> = ({ children }) => {
               'You do not have permission to access the admin panel'
             }
           </p>
-          <Navigate to="/" replace />
+        </div>
+      </div>
+    );
+  }
+
+  // If profile is still loading or null, wait
+  if (!profile) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center space-y-4">
+          <div className="animate-spin w-8 h-8 border-4 border-primary border-t-transparent rounded-full mx-auto"></div>
+          <p className={language === 'ar' ? 'font-arabic' : ''}>
+            {language === 'ar' ? 'جاري التحميل...' : language === 'fr' ? 'Chargement...' : 'Loading...'}
+          </p>
         </div>
       </div>
     );

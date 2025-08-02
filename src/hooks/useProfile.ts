@@ -21,6 +21,7 @@ export const useProfile = () => {
   const fetchProfile = async () => {
     try {
       setLoading(true);
+      setError(null);
       const { data, error } = await supabase
         .from('profiles')
         .select('*')
@@ -30,7 +31,9 @@ export const useProfile = () => {
       if (error) throw error;
       setProfile(data);
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to fetch profile');
+      const errorMessage = err instanceof Error ? err.message : 'Failed to fetch profile';
+      setError(errorMessage);
+      console.error('Profile fetch error:', errorMessage);
     } finally {
       setLoading(false);
     }

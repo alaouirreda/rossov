@@ -42,7 +42,7 @@ const AdminSetup: React.FC = () => {
 
         <AdminUserCreator />
 
-        <div className="mt-8 p-6 bg-muted/50 rounded-lg">
+        <div className="mt-8 p-6 bg-muted/50 rounded-lg space-y-4">
           <h2 className={`text-lg font-semibold mb-4 ${language === 'ar' ? 'font-arabic' : ''}`}>
             {language === 'ar' ? 'كيفية إنشاء مدير:' : language === 'fr' ? 'Comment créer un admin:' : 'How to create an admin:'}
           </h2>
@@ -72,6 +72,20 @@ const AdminSetup: React.FC = () => {
               }
             </li>
           </ol>
+          
+          <div className="mt-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-200 dark:border-blue-800">
+            <h3 className={`font-semibold text-blue-800 dark:text-blue-200 mb-2 ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {language === 'ar' ? 'ملاحظة مهمة:' : language === 'fr' ? 'Note importante:' : 'Important Note:'}
+            </h3>
+            <p className={`text-sm text-blue-700 dark:text-blue-300 ${language === 'ar' ? 'font-arabic' : ''}`}>
+              {language === 'ar' ? 
+                'بعد الترقية إلى مدير، قم بتسجيل الخروج وإعادة تسجيل الدخول لرؤية رابط "الإدارة" في القائمة.' :
+                language === 'fr' ? 
+                'Après la promotion en admin, déconnectez-vous et reconnectez-vous pour voir le lien "Admin" dans le menu.' :
+                'After promotion to admin, log out and log back in to see the "Admin" link in the menu.'
+              }
+            </p>
+          </div>
         </div>
       </div>
     </div>
