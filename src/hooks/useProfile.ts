@@ -25,6 +25,10 @@ export const useProfile = () => {
       
       console.log('Fetching profile for user:', user?.id);
       
+      // First, let's debug what the current user role is
+      const { data: roleCheck, error: roleError } = await supabase.rpc('get_current_user_role');
+      console.log('Current user role check:', { roleCheck, roleError });
+      
       const { data, error } = await supabase
         .from('profiles')
         .select('*')

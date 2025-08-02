@@ -20,14 +20,6 @@ const Header: React.FC = () => {
   const { user, signOut } = useAuth();
   const { profile, loading } = useProfile();
 
-  // Debug logging
-  React.useEffect(() => {
-    console.log('Header - User:', user?.id);
-    console.log('Header - Profile:', profile);
-    console.log('Header - Profile Role:', profile?.role);
-    console.log('Header - Loading:', loading);
-  }, [user, profile, loading]);
-
   const navigation = [
     { name: t('nav.home'), href: '/' },
     { name: t('nav.about'), href: '/about' },
@@ -39,9 +31,12 @@ const Header: React.FC = () => {
 
   // Add admin or member dashboard links
   if (user && profile && !loading) {
+    console.log('Adding navigation links for user role:', profile.role);
     if (profile.role === 'admin') {
+      console.log('Adding admin navigation link');
       navigation.push({ name: t('nav.admin'), href: '/admin' });
     } else {
+      console.log('Adding member navigation link');
       navigation.push({ 
         name: language === 'ar' ? 'حسابي' : language === 'fr' ? 'Mon compte' : 'My Account', 
         href: '/member' 

@@ -18,14 +18,12 @@ const AdminUserCreator: React.FC = () => {
     try {
       const { error } = await supabase.rpc('promote_user_to_admin', {
         user_email: userEmail
+      // Use the improved RPC function
+      const { data, error } = await supabase.rpc('promote_user_to_admin', {
+        user_email: userEmail
       });
 
-      if (error) throw error;
-      return { error: null };
-    } catch (err) {
-      return { error: err instanceof Error ? err.message : 'Failed to promote user' };
-    }
-  };
+      console.log('RPC result:', { data, error });
 
   const handlePromoteUser = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,8 +39,8 @@ const AdminUserCreator: React.FC = () => {
       });
     } else {
       toast({
-        title: language === 'ar' ? 'تم بنجاح' : language === 'fr' ? 'Succès' : 'Success',
-        description: language === 'ar' ? 
+      if (data && !data.success) {
+        throw new Error(data.error || 'Failed to promote user');
           'تم ترقية المستخدم إلى مدير' :
           language === 'fr' ? 
           'Utilisateur promu administrateur' :
